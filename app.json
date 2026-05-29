@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "GabrielCoachingApp",
-    "slug": "GabrielCoachingApp",
+    "slug": "gabrielcoachingapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f123d98d-7a21-4506-8ebf-709ac99b642c"
+      }
+    },
+    "owner": "wyap2327"
   }
 }
