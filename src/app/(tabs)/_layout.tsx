@@ -1,6 +1,8 @@
 ﻿import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/global';
+import { shadows } from '@/styles/shadows';
 
 type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -16,18 +18,20 @@ export default function TabsLayout() {
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: colors.header,
-                    borderTopColor: colors.border,
-                    borderTopWidth: 1,
+                    backgroundColor: colors.tabBar,
+                    borderTopColor: colors.tabBarBorder,
+                    borderTopWidth: StyleSheet.hairlineWidth,
                     height: 64,
                     paddingBottom: 10,
                     paddingTop: 8,
+                    // Subtle top shadow lifts the tab bar off the content below.
+                    ...shadows.sm,
                 },
                 tabBarActiveTintColor: colors.primary,
                 tabBarInactiveTintColor: colors.textMuted,
                 tabBarLabelStyle: {
                     fontSize: 11,
-                    fontWeight: '500',
+                    fontWeight: '600',
                 },
             }}
         >
