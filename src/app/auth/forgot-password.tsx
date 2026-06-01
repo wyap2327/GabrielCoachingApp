@@ -6,23 +6,24 @@
  * password on the Supabase-hosted page, then comes back and signs in.
  */
 
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
-import { useRouter } from 'expo-router';
-import { resetPassword } from '@/lib/auth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { resetPassword } from '@/lib/auth';
 import { colors } from '@/styles/global';
-import { typography } from '@/styles/typography';
 import { spacing } from '@/styles/spacing';
+import { typography } from '@/styles/typography';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ForgotPasswordScreen() {
   const router = useRouter();
@@ -55,6 +56,7 @@ export default function ForgotPasswordScreen() {
   }
 
   return (
+    <SafeAreaView style={styles.flex}>
     <KeyboardAvoidingView
       style={styles.flex}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -142,6 +144,7 @@ export default function ForgotPasswordScreen() {
         )}
       </ScrollView>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

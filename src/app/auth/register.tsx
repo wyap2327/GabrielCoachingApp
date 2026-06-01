@@ -5,23 +5,24 @@
  * so we avoid an unnecessary network call for a mistake the app can catch.
  */
 
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  ScrollView,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
-import { useRouter } from 'expo-router';
-import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { useAuth } from '@/hooks/useAuth';
 import { colors } from '@/styles/global';
-import { typography } from '@/styles/typography';
 import { spacing } from '@/styles/spacing';
+import { typography } from '@/styles/typography';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function RegisterScreen() {
   const router = useRouter();
@@ -73,98 +74,100 @@ export default function RegisterScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.flex}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
+    <SafeAreaView style={styles.flex}>
+      <KeyboardAvoidingView
+        style={styles.flex}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        {/* ── Header with back button ── */}
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            style={styles.backButton}
-            accessibilityRole="button"
-            accessibilityLabel="Go back"
-          >
-            <Text style={styles.backArrow}>←</Text>
-          </TouchableOpacity>
-          <Text style={styles.title}>Create Account</Text>
-          {/* Spacer keeps the title centred. Same width as the back button. */}
-          <View style={styles.headerSpacer} />
-        </View>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          {/* ── Header with back button ── */}
+          <View style={styles.header}>
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={styles.backButton}
+              accessibilityRole="button"
+              accessibilityLabel="Go back"
+            >
+              <Text style={styles.backArrow}>←</Text>
+            </TouchableOpacity>
+            <Text style={styles.title}>Create Account</Text>
+            {/* Spacer keeps the title centred. Same width as the back button. */}
+            <View style={styles.headerSpacer} />
+          </View>
 
-        {/* ── Form ── */}
-        <View style={styles.form}>
-          <Input
-            label="Full Name"
-            value={name}
-            onChangeText={setName}
-            placeholder="Gabriel Silva"
-            autoCapitalize="words"
-            autoCorrect={false}
-            returnKeyType="next"
-          />
+          {/* ── Form ── */}
+          <View style={styles.form}>
+            <Input
+              label="Full Name"
+              value={name}
+              onChangeText={setName}
+              placeholder="Gabriel Silva"
+              autoCapitalize="words"
+              autoCorrect={false}
+              returnKeyType="next"
+            />
 
-          <Input
-            label="Email"
-            value={email}
-            onChangeText={setEmail}
-            placeholder="you@example.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            returnKeyType="next"
-          />
+            <Input
+              label="Email"
+              value={email}
+              onChangeText={setEmail}
+              placeholder="you@example.com"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="next"
+            />
 
-          <Input
-            label="Password"
-            value={password}
-            onChangeText={setPassword}
-            placeholder="At least 6 characters"
-            secureTextEntry
-            returnKeyType="next"
-          />
+            <Input
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              placeholder="At least 6 characters"
+              secureTextEntry
+              returnKeyType="next"
+            />
 
-          <Input
-            label="Confirm Password"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            placeholder="Repeat your password"
-            secureTextEntry
-            returnKeyType="done"
-            onSubmitEditing={handleRegister}
-          />
+            <Input
+              label="Confirm Password"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              placeholder="Repeat your password"
+              secureTextEntry
+              returnKeyType="done"
+              onSubmitEditing={handleRegister}
+            />
 
-          {errorMessage ? (
-            <Text style={styles.errorText}>{errorMessage}</Text>
-          ) : null}
+            {errorMessage ? (
+              <Text style={styles.errorText}>{errorMessage}</Text>
+            ) : null}
 
-          <Button
-            label="Create Account"
-            onPress={handleRegister}
-            fullWidth
-            loading={isLoading}
-            style={styles.submitButton}
-          />
-        </View>
+            <Button
+              label="Create Account"
+              onPress={handleRegister}
+              fullWidth
+              loading={isLoading}
+              style={styles.submitButton}
+            />
+          </View>
 
-        {/* ── Sign in link ── */}
-        <View style={styles.signInRow}>
-          <Text style={styles.signInPrompt}>Already have an account? </Text>
-          <TouchableOpacity
-            onPress={() => router.back()}
-            accessibilityRole="link"
-            accessibilityLabel="Go to sign in screen"
-          >
-            <Text style={styles.signInLink}>Sign In</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+          {/* ── Sign in link ── */}
+          <View style={styles.signInRow}>
+            <Text style={styles.signInPrompt}>Already have an account? </Text>
+            <TouchableOpacity
+              onPress={() => router.back()}
+              accessibilityRole="link"
+              accessibilityLabel="Go to sign in screen"
+            >
+              <Text style={styles.signInLink}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 

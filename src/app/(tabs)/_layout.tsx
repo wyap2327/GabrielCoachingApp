@@ -1,10 +1,10 @@
 ﻿// TAB BAR LAYOUT — src/app/(tabs)/_layout.tsx
-// Defines the bottom tab bar (Home, Booking, Training, Messages, Videos).
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet } from 'react-native';
+// Defines the bottom tab bar (Home, Booking, Programs, Messages, Videos).
 import { colors } from '@/styles/global';
 import { shadows } from '@/styles/shadows';
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -62,9 +62,9 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
-                name="training"
+                name="programs"
                 options={{
-                    title: 'Training',
+                    title: 'Programs',
                     tabBarIcon: ({ color, focused }) =>
                         <Ionicons name={focused ? 'barbell' : 'barbell-outline'} size={22} color={color} />,
                 }}
