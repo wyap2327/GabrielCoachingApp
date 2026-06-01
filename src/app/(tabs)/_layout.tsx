@@ -1,4 +1,6 @@
-﻿import { Tabs } from 'expo-router';
+﻿// TAB BAR LAYOUT — src/app/(tabs)/_layout.tsx
+// Defines the bottom tab bar (Home, Booking, Training, Messages, Videos).
+import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
 import { colors } from '@/styles/global';

@@ -1,3 +1,5 @@
+// ROOT LAYOUT — src/app/_layout.tsx
+// Wraps the entire app. Handles auth guard and redirects.
 import { useEffect } from 'react';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';

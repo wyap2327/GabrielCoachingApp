@@ -15,5 +15,5 @@ export default function BookingScreen() {
 const styles = StyleSheet.create({
     screen: { flex: 1, backgroundColor: colors.background },
     header: { paddingHorizontal: 20, paddingTop: 8 },
-    title: { fontSize: 26, fontWeight: '800', color: colors.text, letterSpacing: -0.5 },
+    title: { fontSize: 26, fontWeight: '800', color: colors.textPrimary, letterSpacing: -0.5 },
 });
