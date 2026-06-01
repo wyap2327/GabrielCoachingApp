@@ -88,6 +88,11 @@ const BookingCard: React.FC<BookingCardProps> = ({ booking, onCancel, onReschedu
         <Text style={styles.durationLabel}>{durationLabel}</Text>
       </View>
 
+      {/* Client name — only visible on the coach's view */}
+      {booking.clientName && (
+        <Text style={styles.clientName}>{booking.clientName}</Text>
+      )}
+
       {/* Date */}
       <Text style={styles.cardDate}>{formatDate(booking.date)}</Text>
 
@@ -347,6 +352,12 @@ const styles = StyleSheet.create({
     ...typography.caption,
     fontWeight: '600',
     color: colors.textSecondary,
+  },
+  clientName: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.textPrimary,
+    marginBottom: spacing.xs,
   },
   cardDate: {
     ...typography.h4,

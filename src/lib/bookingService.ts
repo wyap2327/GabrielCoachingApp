@@ -25,6 +25,7 @@ export interface Booking {
   notes?: string;
   status: 'confirmed' | 'cancelled';
   created_at: string;
+  clientName?: string; // populated when the coach fetches all bookings
 }
 
 export interface TimeSlot {
@@ -82,7 +83,7 @@ function generateSlots(duration: BookingDuration): Array<{ start: string; end: s
  * ordered by date then start_time. "Upcoming" means today or later.
  */
 export async function getMyBookings(): Promise<Booking[]> {
-  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const today = new Date().toISOString().split('T')[0];
 
   const { data, error } = await supabase
     .from('bookings')
@@ -93,7 +94,19 @@ export async function getMyBookings(): Promise<Booking[]> {
     .order('start_time', { ascending: true });
 
   if (error) throw error;
-  return (data ?? []) as Booking[];
+  const bookings = (data ?? []) as Booking[];
+  if (bookings.length === 0) return bookings;
+
+  // Fetch profile names for all unique user_ids so the coach can see
+  // which client made each booking without a separate query per row.
+  const userIds = [...new Set(bookings.map((b) => b.user_id))];
+  const { data: profiles } = await supabase
+    .from('profiles')
+    .select('id, name')
+    .in('id', userIds);
+
+  const nameMap = new Map((profiles ?? []).map((p) => [p.id, p.name]));
+  return bookings.map((b) => ({ ...b, clientName: nameMap.get(b.user_id) }));
 }
 
 /**

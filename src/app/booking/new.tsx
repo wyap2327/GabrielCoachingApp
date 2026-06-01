@@ -249,7 +249,7 @@ export default function NewBookingScreen() {
           endTime: selectedSlot.end,
         });
         Alert.alert('Rescheduled!', 'Your session has been moved.', [
-          { text: 'OK', onPress: () => router.back() },
+          { text: 'OK', onPress: () => router.replace('/(tabs)/booking') },
         ]);
       } else {
         await createBooking({
@@ -261,7 +261,7 @@ export default function NewBookingScreen() {
           notes: notes.trim() || undefined,
         });
         Alert.alert('Booking Confirmed!', 'Your session is booked.', [
-          { text: 'OK', onPress: () => router.back() },
+          { text: 'OK', onPress: () => router.replace('/(tabs)/booking') },
         ]);
       }
     } catch {
