@@ -112,7 +112,7 @@ export default function ChatScreen() {
     if (!conversationId || !user) return;
 
     const channel = supabase
-      .channel(`messages:${conversationId}`)
+      .channel(`messages:${conversationId}:${Date.now()}`)
       .on(
         'postgres_changes',
         {
@@ -215,7 +215,7 @@ export default function ChatScreen() {
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity
-          onPress={() => router.back()}
+          onPress={() => router.push('/(tabs)')}
           style={styles.backBtn}
           accessibilityRole="button"
           accessibilityLabel="Go back"

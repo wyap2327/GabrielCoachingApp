@@ -190,8 +190,9 @@ function ClientView() {
           return;
         }
         const conversationId = await getOrCreateConversation(user.id, coach.id);
-        // Replace so tapping back from the chat doesn't loop back here.
-        router.replace(`/messages/${conversationId}`);
+        // Push (not replace) so the tab remains in the history stack and
+        // the back button on the chat screen can return here normally.
+        router.push(`/messages/${conversationId}`);
       } catch {
         setError('Could not connect to your conversation. Please try again.');
       }
